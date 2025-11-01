@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FinConso - Financial Consolidation Platform</title>
+    <title>FinConso - Enterprise Financial Consolidation Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,220 +12,725 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #4CAF50;
+            --primary-dark: #388E3C;
+            --primary-light: #81C784;
+            --secondary: #2c3e50;
+            --secondary-dark: #1a252f;
+            --accent: #2196F3;
+            --text-dark: #2c3e50;
+            --text-light: #6c757d;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
-            min-height: 100vh;
+            color: var(--text-dark);
+            background: var(--white);
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* Header with Conso Theme */
+        /* Header */
         header {
-            background: #2c3e50;
-            color: white;
-            padding: 1rem 0;
             position: fixed;
-            width: 100%;
             top: 0;
+            width: 100%;
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(76, 175, 80, 0.2);
+        }
+
+        header.scrolled {
+            background: rgba(44, 62, 80, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
 
         nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
         .logo {
-            font-size: 32px;
-            font-family: 'Montserrat', 'Arial Black', sans-serif;
+            font-size: 28px;
             font-weight: 800;
-            letter-spacing: 2px;
-            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            text-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
         }
 
-        .logo-subtitle {
+        .version-badge {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
             font-size: 11px;
-            color: #95a5a6;
-            letter-spacing: 3px;
-            font-weight: 500;
-            margin-top: 5px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
             gap: 2rem;
+            align-items: center;
         }
 
         .nav-links a {
             text-decoration: none;
             color: white;
             font-weight: 500;
-            padding: 12px;
-            border: 1px solid #4CAF50;
-            border-radius: 5px;
-            transition: all 0.3s;
             font-size: 14px;
+            transition: all 0.3s;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            background: #4CAF50;
-            color: white;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
         }
 
-        main {
-            margin-top: 100px;
-            padding: 2rem 0;
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
-        /* Hero Section with Conso Theme */
-        .hero {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            text-align: center;
+        .cta-nav {
+            background: var(--primary);
+            padding: 10px 20px;
+            border-radius: 6px;
+            transition: all 0.3s;
         }
 
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: #555;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: #4CAF50;
-            color: white;
-            padding: 12px 24px;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            background: #45a049;
+        .cta-nav:hover {
+            background: var(--primary-dark);
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
         }
 
-        /* Features Section with Conso Theme */
-        .features {
-            background: white;
-            padding: 20px;
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(76, 175, 80, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(33, 150, 243, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content .highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 32px;
             border-radius: 8px;
-            margin: 20px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-weight: 600;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
         }
 
-        .features h2 {
-            color: #555;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 175, 80, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--primary);
+        }
+
+        .hero-visual {
+            position: relative;
+        }
+
+        .dashboard-preview {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .preview-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .preview-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            opacity: 0.6;
+        }
+
+        .preview-content {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.5rem;
+            color: white;
+        }
+
+        .preview-bar {
+            height: 8px;
+            background: rgba(76, 175, 80, 0.3);
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .preview-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-light) 100%);
+            animation: fillBar 2s ease-in-out infinite;
+        }
+
+        @keyframes fillBar {
+            0%, 100% { width: 60%; }
+            50% { width: 90%; }
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 4rem 2rem;
+        }
+
+        .stats-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            color: white;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .features-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--primary-dark);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
         }
 
         .feature-card {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border: 2px solid #4CAF50;
-            transition: transform 0.3s ease;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 2px solid transparent;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
         }
 
         .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .feature-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-dark);
             margin-bottom: 1rem;
-            color: #4CAF50;
-            font-weight: bold;
         }
 
         .feature-card p {
-            color: #666;
-            line-height: 1.6;
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1rem;
         }
 
-        /* About Section with Conso Theme */
-        .about {
+        .feature-tag {
+            display: inline-block;
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--primary-dark);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Technical Specs */
+        .tech-specs {
+            padding: 6rem 2rem;
             background: white;
-            padding: 20px 30px;
-            border-radius: 8px;
-            margin: 20px 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        .about h2 {
-            color: #555;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-
-        .about p {
-            font-size: 1.1rem;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Footer with Conso Theme */
-        footer {
-            background: #34495e;
-            color: white;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 8px;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
+        .tech-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
             align-items: center;
-            flex-wrap: wrap;
+        }
+
+        .tech-image {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 12px;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tech-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tech-item p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .tech-content h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-features {
+            list-style: none;
+        }
+
+        .tech-features li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: flex-start;
             gap: 1rem;
         }
 
-        .footer-info h3 {
-            margin-bottom: 10px;
-            color: #4CAF50;
+        .tech-features li:last-child {
+            border-bottom: none;
+        }
+
+        .check-icon {
+            color: var(--primary);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 6rem 2rem;
+            background: var(--bg-light);
+        }
+
+        .pricing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            position: relative;
+        }
+
+        .pricing-card.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .pricing-price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-period {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(76, 175, 80, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(33, 150, 243, 0.15) 0%, transparent 50%);
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-container h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-container p {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .form-group {
+            text-align: left;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary-dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            padding: 0.5rem 0;
+            transition: all 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
         }
 
         .social-links {
@@ -233,50 +739,62 @@
         }
 
         .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
+            text-decoration: none;
+            transition: all 0.3s;
         }
 
         .social-links a:hover {
-            color: #4CAF50;
+            background: var(--primary);
+            transform: translateY(-3px);
         }
 
-        /* Status badges like in Conso */
-        .status-badge {
-            background: #4CAF50;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-        }
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
 
-        .status-badge.inactive {
-            background: #f44336;
-        }
+            .hero-visual {
+                max-width: 600px;
+                margin: 0 auto;
+            }
 
-        /* Form elements with Conso theme */
-        .form-group {
-            margin-bottom: 20px;
-        }
+            .hero-buttons {
+                justify-content: center;
+            }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-            font-weight: bold;
-        }
+            .tech-container {
+                grid-template-columns: 1fr;
+            }
 
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            font-size: 14px;
-            border: 2px solid #4CAF50;
-            border-radius: 4px;
-            box-sizing: border-box;
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -284,124 +802,454 @@
                 display: none;
             }
 
-            .hero h1 {
-                font-size: 2rem;
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
 
-            .hero p {
-                font-size: 1rem;
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
             .features-grid {
                 grid-template-columns: 1fr;
             }
 
-            .footer-content {
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .cta-container h2 {
+                font-size: 2rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
                 flex-direction: column;
+                gap: 1rem;
                 text-align: center;
             }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <div>
+    <!-- Header -->
+    <header id="header">
+        <nav>
+            <div class="logo-container">
                 <div class="logo">FinCONSO</div>
-                <div class="logo-subtitle">CONSOLIDATION</div>
+                <span class="version-badge">v0.5</span>
             </div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#technology">Technology</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact" class="cta-nav">Get Started →</a></li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <div class="container">
-            <section id="home" class="hero">
-                <h1>Financial Consolidation Platform</h1>
-                <p>Streamline your financial consolidation processes with our comprehensive platform designed for enterprise-level financial management and reporting.</p>
-                <a href="#services" class="cta-button">Explore Features</a>
-            </section>
-
-            <section id="services" class="features">
-                <h2>Platform Features</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">📊</div>
-                        <h3>Master Data Management</h3>
-                        <p>Comprehensive management of entities, currencies, accounts, and periods. Maintain data integrity across your organization with centralized control.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📦</div>
-                        <h3>Package Data Processing</h3>
-                        <p>Efficient processing and management of financial data packages. Streamline data collection and validation processes for accurate reporting.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔄</div>
-                        <h3>Consolidation Engine</h3>
-                        <p>Automated consolidation processes with configurable groups and rules. Generate consolidated financial statements with precision and speed.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">👥</div>
-                        <h3>User Management</h3>
-                        <p>Role-based access control and user administration. Ensure security and proper access levels for different organizational roles.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📈</div>
-                        <h3>Real-time Reporting</h3>
-                        <p>Dynamic reporting capabilities with real-time data updates. Generate comprehensive financial reports and analytics instantly.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🛡️</div>
-                        <h3>Data Security</h3>
-                        <p>Enterprise-grade security measures to protect sensitive financial data. Compliance with industry standards and regulations.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="about" class="about">
-                <h2>About FinConso Platform</h2>
-                <p>FinConso is a comprehensive financial consolidation platform designed to meet the complex needs of modern enterprises. Our platform provides end-to-end solutions for financial data management, consolidation processes, and reporting. Built with enterprise-grade security and scalability in mind, FinConso helps organizations streamline their financial operations while maintaining the highest standards of accuracy and compliance.</p>
-            </section>
-
-            <section id="contact" class="about">
-                <h2>Contact Us</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 20px;">
-                    <div>
-                        <h3 style="color: #4CAF50; margin-bottom: 15px; font-size: 1.2rem;">📧 Email</h3>
-                        <p style="color: #666; line-height: 1.8;">
-                            <a href="mailto:admin@finconso.com" style="color: #4CAF50; text-decoration: none; font-weight: 500; font-size: 1.1rem;">admin@finconso.com</a>
-                        </p>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <h3>FinConso</h3>
-                    <p>Financial Consolidation Platform</p>
-                    <p style="font-size: 10px; color: #7f8c8d; margin-top: 8px;">Version: 1.0.0</p>
-                </div>
-                <div class="social-links">
-                    <a href="#" title="LinkedIn">🔗</a>
-                    <a href="#" title="Documentation">📖</a>
-                    <a href="#" title="Support">❓</a>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content fade-in-up">
+                <h1>
+                    Enterprise-Grade<br>
+                    <span class="highlight">Financial Consolidation</span><br>
+                    Made Simple
+                </h1>
+                <p>
+                    Streamline your multi-entity financial consolidation with our comprehensive platform. 
+                    Dynamic reporting, real-time analytics, and automated workflows—all in one place.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        Start Free Trial
+                        <span>→</span>
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        Explore Features
+                        <span>↓</span>
+                    </a>
                 </div>
             </div>
-            <p style="margin-top: 1rem; opacity: 0.7; font-size: 12px;">&copy; 2024 FinConso. All rights reserved.</p>
+            <div class="hero-visual">
+                <div class="dashboard-preview">
+                    <div class="preview-header">
+                        <span class="preview-dot"></span>
+                        <span class="preview-dot"></span>
+                        <span class="preview-dot"></span>
+                    </div>
+                    <div class="preview-content">
+                        <div style="margin-bottom: 1rem; font-weight: 600;">📊 Live Dashboard</div>
+                        <div class="preview-bar">
+                            <div class="preview-bar-fill" style="width: 75%;"></div>
+                        </div>
+                        <div class="preview-bar">
+                            <div class="preview-bar-fill" style="width: 85%; animation-delay: 0.5s;"></div>
+                        </div>
+                        <div class="preview-bar">
+                            <div class="preview-bar-fill" style="width: 65%; animation-delay: 1s;"></div>
+                        </div>
+                        <div style="margin-top: 1.5rem; display: flex; justify-content: space-between; font-size: 0.85rem; opacity: 0.8;">
+                            <span>Real-time Data</span>
+                            <span>✓ Synced</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">API Endpoints</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">13</div>
+                <div class="stat-label">Database Tables</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Audit Trail</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Export Formats</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="features-container">
+            <div class="section-header">
+                <span class="section-badge">FEATURES</span>
+                <h2>Everything You Need for Financial Consolidation</h2>
+                <p>Comprehensive tools designed for enterprise-level financial management and reporting</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Master Data Management</h3>
+                    <p>Complete control over entities, currencies, accounts, periods, and exchange rates. Maintain data integrity with hierarchical structures and comprehensive audit trails.</p>
+                    <span class="feature-tag">Core Feature</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Dynamic Report Designer</h3>
+                    <p>Create custom reports without coding. Configure dimensions, filters, and layouts through an intuitive interface. Save and reuse report templates.</p>
+                    <span class="feature-tag">NEW in v0.5</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Pivot Table Analytics</h3>
+                    <p>Multi-dimensional data analysis with automatic pivot table generation. Row and column dimensions with optional totals for comprehensive insights.</p>
+                    <span class="feature-tag">NEW in v0.5</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📥</div>
+                    <h3>Multi-Format Export</h3>
+                    <p>Export reports in CSV, Excel (TSV), and PDF formats. Includes metadata headers with execution details and applied filters for complete traceability.</p>
+                    <span class="feature-tag">NEW in v0.5</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Automated Consolidation</h3>
+                    <p>Smart consolidation engine with 5-tier FX rate strategy. Automatic currency triangulation, ownership calculations, and elimination entries.</p>
+                    <span class="feature-tag">Core Feature</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💱</div>
+                    <h3>Currency Management</h3>
+                    <p>Multi-currency support with automatic conversion. Direct rates, inverse rates, and USD triangulation for comprehensive currency handling.</p>
+                    <span class="feature-tag">Core Feature</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📦</div>
+                    <h3>Package Data Upload</h3>
+                    <p>Bulk CSV upload for entity financial data. Smart validation and processing with support for flows and audit dimensions.</p>
+                    <span class="feature-tag">Core Feature</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Advanced Filtering</h3>
+                    <p>Filter reports by dimensions and attributes (e.g., Account.account_type). Multi-select values for flexible data segmentation and analysis.</p>
+                    <span class="feature-tag">NEW in v0.5</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👥</div>
+                    <h3>User Management</h3>
+                    <p>Role-based access control with admin privileges. Complete user audit trail showing who created, modified, or executed reports.</p>
+                    <span class="feature-tag">Core Feature</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Execution Tracking</h3>
+                    <p>Monitor report execution history with timestamps and user tracking. Separate audit trails for configuration changes vs. executions.</p>
+                    <span class="feature-tag">NEW in v0.5</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Theme Customization</h3>
+                    <p>Centralized color system with 66+ predefined colors. Easy white-label customization for corporate branding needs.</p>
+                    <span class="feature-tag">NEW in v0.5</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏠</div>
+                    <h3>Intuitive Dashboard</h3>
+                    <p>Modern home page with feature cards and quick navigation. Collapsible sidebar sections and clickable logo for streamlined workflow.</p>
+                    <span class="feature-tag">NEW in v0.5</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="tech-specs">
+        <div class="tech-container">
+            <div class="tech-image">
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <h4>⚡ React</h4>
+                        <p>Modern UI with hooks and context</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>🚀 FastAPI</h4>
+                        <p>High-performance Python backend</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>🗄️ PostgreSQL</h4>
+                        <p>Enterprise database with 19 indexes</p>
+                    </div>
+                    <div class="tech-item">
+                        <h4>🐳 Docker</h4>
+                        <p>Containerized deployment</p>
+                    </div>
+                </div>
+            </div>
+            <div class="tech-content">
+                <span class="section-badge">TECHNOLOGY</span>
+                <h2>Built for Enterprise Performance</h2>
+                <ul class="tech-features">
+                    <li>
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Modular Architecture</strong><br>
+                            50+ component files with clear separation of concerns for maintainability
+                        </div>
+                    </li>
+                    <li>
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>RESTful API Design</strong><br>
+                            50+ endpoints following REST principles with comprehensive documentation
+                        </div>
+                    </li>
+                    <li>
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Dynamic SQL Generation</strong><br>
+                            Smart query builder for flexible report configurations and pivot tables
+                        </div>
+                    </li>
+                    <li>
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Real-time Data Processing</strong><br>
+                            Instant report execution with server-side pivot transformation
+                        </div>
+                    </li>
+                    <li>
+                        <span class="check-icon">✓</span>
+                        <div>
+                            <strong>Complete Audit Trail</strong><br>
+                            Track every change with created_by, modified_by, executed_by fields
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="pricing-container">
+            <div class="section-header">
+                <span class="section-badge">PRICING</span>
+                <h2>Choose Your Plan</h2>
+                <p>Flexible pricing for organizations of all sizes</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="pricing-price">Contact</div>
+                    <div class="pricing-period">For small teams</div>
+                    <ul class="pricing-features">
+                        <li><span class="check-icon">✓</span> Up to 5 entities</li>
+                        <li><span class="check-icon">✓</span> 3 users</li>
+                        <li><span class="check-icon">✓</span> Basic reporting</li>
+                        <li><span class="check-icon">✓</span> Email support</li>
+                        <li><span class="check-icon">✓</span> Community access</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary" style="width: 100%;">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Professional</h3>
+                    <div class="pricing-price">Contact</div>
+                    <div class="pricing-period">For growing businesses</div>
+                    <ul class="pricing-features">
+                        <li><span class="check-icon">✓</span> Unlimited entities</li>
+                        <li><span class="check-icon">✓</span> 20 users</li>
+                        <li><span class="check-icon">✓</span> Advanced reporting</li>
+                        <li><span class="check-icon">✓</span> Priority support</li>
+                        <li><span class="check-icon">✓</span> Custom themes</li>
+                        <li><span class="check-icon">✓</span> API access</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Get Started</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Enterprise</h3>
+                    <div class="pricing-price">Contact</div>
+                    <div class="pricing-period">For large organizations</div>
+                    <ul class="pricing-features">
+                        <li><span class="check-icon">✓</span> Unlimited everything</li>
+                        <li><span class="check-icon">✓</span> Dedicated support</li>
+                        <li><span class="check-icon">✓</span> Custom features</li>
+                        <li><span class="check-icon">✓</span> On-premise deployment</li>
+                        <li><span class="check-icon">✓</span> SLA guarantee</li>
+                        <li><span class="check-icon">✓</span> Training included</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary" style="width: 100%;">Contact Sales</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="cta-container">
+            <h2>Ready to Transform Your Financial Consolidation?</h2>
+            <p>Get started with FinConso today and experience the power of modern financial management.</p>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Work Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Company Name" required>
+                </div>
+                <div class="form-group">
+                    <select required>
+                        <option value="">Company Size</option>
+                        <option value="1-10">1-10 employees</option>
+                        <option value="11-50">11-50 employees</option>
+                        <option value="51-200">51-200 employees</option>
+                        <option value="201+">201+ employees</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Tell us about your requirements..." rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    Request Demo
+                    <span>→</span>
+                </button>
+            </form>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.7;">
+                Or email us directly at <a href="mailto:admin@finconso.com" style="color: var(--primary); text-decoration: none; font-weight: 600;">admin@finconso.com</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h3>FinCONSO</h3>
+                <p>Enterprise-grade financial consolidation platform designed for modern organizations. Streamline your consolidation processes with powerful automation and real-time reporting.</p>
+                <p style="font-size: 0.85rem; opacity: 0.6;">Version 0.5 | Built with ❤️ for CFOs</p>
+            </div>
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul class="footer-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#technology">Technology</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Demo</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul class="footer-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024-2025 FinConso. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" title="LinkedIn">🔗</a>
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="GitHub">💻</a>
+                <a href="#" title="Email">📧</a>
+            </div>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for navigation links
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -415,16 +1263,34 @@
             });
         });
 
-        // Add scroll effect to header
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = '#2c3e50';
-                header.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
-            } else {
-                header.style.background = '#2c3e50';
-                header.style.boxShadow = '2px 0 5px rgba(0,0,0,0.1)';
-            }
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your interest! Our team will contact you shortly.');
+            e.target.reset();
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards
+        document.querySelectorAll('.feature-card, .pricing-card, .tech-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
         });
     </script>
 </body>
