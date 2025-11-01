@@ -665,6 +665,19 @@
             background: rgba(255, 255, 255, 0.15);
         }
 
+        .form-group select {
+            cursor: pointer;
+            appearance: auto;
+            -webkit-appearance: menulist;
+            -moz-appearance: menulist;
+        }
+
+        .form-group select option {
+            background: var(--secondary-dark);
+            color: white;
+            padding: 10px;
+        }
+
         /* Footer */
         footer {
             background: var(--secondary-dark);
@@ -867,7 +880,7 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#technology">Technology</a></li>
-                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#investment">Investment</a></li>
                 <li><a href="#contact" class="cta-nav">Get Started →</a></li>
             </ul>
         </nav>
@@ -929,20 +942,20 @@
     <section class="stats">
         <div class="stats-container">
             <div class="stat-item">
-                <div class="stat-number">50+</div>
-                <div class="stat-label">API Endpoints</div>
+                <div class="stat-number">99.9%</div>
+                <div class="stat-label">Uptime SLA</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">13</div>
-                <div class="stat-label">Database Tables</div>
+                <div class="stat-number">10x</div>
+                <div class="stat-label">Faster Consolidation</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number">100%</div>
-                <div class="stat-label">Audit Trail</div>
+                <div class="stat-label">Data Accuracy</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">3</div>
-                <div class="stat-label">Export Formats</div>
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Expert Support</div>
             </div>
         </div>
     </section>
@@ -1099,55 +1112,83 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing">
+    <!-- Investment Section -->
+    <section id="investment" class="pricing">
         <div class="pricing-container">
             <div class="section-header">
-                <span class="section-badge">PRICING</span>
-                <h2>Choose Your Plan</h2>
-                <p>Flexible pricing for organizations of all sizes</p>
+                <span class="section-badge">INVESTMENT OPPORTUNITY</span>
+                <h2>Looking for Investors</h2>
+                <p>Join us in revolutionizing financial consolidation for enterprises worldwide</p>
             </div>
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <h3>Starter</h3>
-                    <div class="pricing-price">Contact</div>
-                    <div class="pricing-period">For small teams</div>
-                    <ul class="pricing-features">
-                        <li><span class="check-icon">✓</span> Up to 5 entities</li>
-                        <li><span class="check-icon">✓</span> 3 users</li>
-                        <li><span class="check-icon">✓</span> Basic reporting</li>
-                        <li><span class="check-icon">✓</span> Email support</li>
-                        <li><span class="check-icon">✓</span> Community access</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-secondary" style="width: 100%;">Get Started</a>
-                </div>
-                <div class="pricing-card featured">
-                    <h3>Professional</h3>
-                    <div class="pricing-price">Contact</div>
-                    <div class="pricing-period">For growing businesses</div>
-                    <ul class="pricing-features">
-                        <li><span class="check-icon">✓</span> Unlimited entities</li>
-                        <li><span class="check-icon">✓</span> 20 users</li>
-                        <li><span class="check-icon">✓</span> Advanced reporting</li>
-                        <li><span class="check-icon">✓</span> Priority support</li>
-                        <li><span class="check-icon">✓</span> Custom themes</li>
-                        <li><span class="check-icon">✓</span> API access</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-primary" style="width: 100%;">Get Started</a>
-                </div>
-                <div class="pricing-card">
-                    <h3>Enterprise</h3>
-                    <div class="pricing-price">Contact</div>
-                    <div class="pricing-period">For large organizations</div>
-                    <ul class="pricing-features">
-                        <li><span class="check-icon">✓</span> Unlimited everything</li>
-                        <li><span class="check-icon">✓</span> Dedicated support</li>
-                        <li><span class="check-icon">✓</span> Custom features</li>
-                        <li><span class="check-icon">✓</span> On-premise deployment</li>
-                        <li><span class="check-icon">✓</span> SLA guarantee</li>
-                        <li><span class="check-icon">✓</span> Training included</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-secondary" style="width: 100%;">Contact Sales</a>
+            <div style="max-width: 900px; margin: 3rem auto;">
+                <div style="background: white; padding: 4rem 3rem; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); border: 2px solid var(--primary);">
+                    <div style="text-align: center; margin-bottom: 3rem;">
+                        <div style="font-size: 4rem; margin-bottom: 1rem;">🚀</div>
+                        <h3 style="font-size: 2rem; color: var(--text-dark); margin-bottom: 1rem;">Want to Invest?</h3>
+                        <p style="font-size: 1.15rem; color: var(--text-light); line-height: 1.8;">
+                            We're building the future of financial consolidation. Join us as a strategic partner 
+                            to bring this innovative platform to enterprises worldwide.
+                        </p>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem;">
+                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-light); border-radius: 12px;">
+                            <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;">$2.5M</div>
+                            <div style="color: var(--text-light); font-size: 0.95rem;">Seeking Investment</div>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-light); border-radius: 12px;">
+                            <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;">15x</div>
+                            <div style="color: var(--text-light); font-size: 0.95rem;">Projected ROI</div>
+                        </div>
+                        <div style="text-align: center; padding: 1.5rem; background: var(--bg-light); border-radius: 12px;">
+                            <div style="font-size: 2.5rem; font-weight: 800; color: var(--primary); margin-bottom: 0.5rem;">3-5yr</div>
+                            <div style="color: var(--text-light); font-size: 0.95rem;">Exit Timeline</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 2.5rem;">
+                        <h4 style="font-size: 1.3rem; color: var(--text-dark); margin-bottom: 1.5rem; text-align: center;">Why Invest in FinConso?</h4>
+                        <ul class="tech-features" style="max-width: 700px; margin: 0 auto;">
+                            <li style="border-bottom: 1px solid #e0e0e0; padding: 1rem 0;">
+                                <span class="check-icon">✓</span>
+                                <div>
+                                    <strong>Production-Ready Technology</strong><br>
+                                    Enterprise-grade platform built with modern architecture
+                                </div>
+                            </li>
+                            <li style="border-bottom: 1px solid #e0e0e0; padding: 1rem 0;">
+                                <span class="check-icon">✓</span>
+                                <div>
+                                    <strong>Large Market Opportunity</strong><br>
+                                    $8B global financial consolidation software market
+                                </div>
+                            </li>
+                            <li style="border-bottom: 1px solid #e0e0e0; padding: 1rem 0;">
+                                <span class="check-icon">✓</span>
+                                <div>
+                                    <strong>Competitive Advantage</strong><br>
+                                    Modern architecture, dynamic reporting, and superior UX
+                                </div>
+                            </li>
+                            <li style="padding: 1rem 0;">
+                                <span class="check-icon">✓</span>
+                                <div>
+                                    <strong>Recurring Revenue Model</strong><br>
+                                    SaaS-based with high customer retention and expansion potential
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <a href="#contact" class="btn btn-primary" style="font-size: 1.1rem; padding: 16px 40px;">
+                            Schedule Investor Meeting
+                            <span>→</span>
+                        </a>
+                        <p style="margin-top: 1.5rem; color: var(--text-light); font-size: 0.95rem;">
+                            Or reach out directly at <a href="mailto:admin@finconso.com" style="color: var(--primary); font-weight: 600; text-decoration: none;">admin@finconso.com</a>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1158,27 +1199,33 @@
         <div class="cta-container">
             <h2>Ready to Transform Your Financial Consolidation?</h2>
             <p>Get started with FinConso today and experience the power of modern financial management.</p>
-            <form class="contact-form">
+            <form class="contact-form" action="https://formsubmit.co/admin@finconso.com" method="POST">
+                <!-- FormSubmit Configuration -->
+                <input type="hidden" name="_subject" value="New Demo Request from FinConso Website">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="box">
+                <input type="text" name="_honey" style="display:none">
+                
                 <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
+                    <input type="text" name="name" placeholder="Your Name" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Work Email" required>
+                    <input type="email" name="email" placeholder="Work Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Company Name" required>
+                    <input type="text" name="company" placeholder="Company Name" required>
                 </div>
                 <div class="form-group">
-                    <select required>
+                    <select name="company_size" required>
                         <option value="">Company Size</option>
-                        <option value="1-10">1-10 employees</option>
-                        <option value="11-50">11-50 employees</option>
-                        <option value="51-200">51-200 employees</option>
-                        <option value="201+">201+ employees</option>
+                        <option value="1-10 employees">1-10 employees</option>
+                        <option value="11-50 employees">11-50 employees</option>
+                        <option value="51-200 employees">51-200 employees</option>
+                        <option value="201+ employees">201+ employees</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Tell us about your requirements..." rows="4"></textarea>
+                    <textarea name="message" placeholder="Tell us about your requirements..." rows="4"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary" style="width: 100%;">
                     Request Demo
@@ -1204,7 +1251,7 @@
                 <ul class="footer-links">
                     <li><a href="#features">Features</a></li>
                     <li><a href="#technology">Technology</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#investment">Investment</a></li>
                     <li><a href="#contact">Demo</a></li>
                 </ul>
             </div>
@@ -1263,12 +1310,7 @@
             });
         });
 
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your interest! Our team will contact you shortly.');
-            e.target.reset();
-        });
+        // Form is now handled by FormSubmit - no JavaScript needed
 
         // Intersection Observer for animations
         const observerOptions = {
